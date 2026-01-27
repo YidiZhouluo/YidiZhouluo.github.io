@@ -1,14 +1,11 @@
 /* ============================================
     zlyd-CV Website Styles
-    v1.2.3
+    v1.2.5
    ============================================ */
 
 @import 'variables.css';
+@import 'base.css';
 @import 'animations.css';
-/* @import 'base.css'; */
-/* Missing */
 @import 'layout.css';
-/* @import 'components-core.css'; */
-/* Missing */
 @import 'components-modules.css';
 @import 'pages.css';

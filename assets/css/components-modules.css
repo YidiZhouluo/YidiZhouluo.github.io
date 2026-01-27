@@ -5,16 +5,48 @@
    ============================================ */
 
 /* -------------------------------------------
-   Profile Avatar Area
+   Profile Avatar Area (Enhanced v2)
    ------------------------------------------- */
 .profile-avatar {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* 多层光晕背景 */
+.profile-avatar::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(102, 126, 234, 0.15) 0%,
+            rgba(118, 75, 162, 0.1) 30%,
+            rgba(245, 87, 108, 0.05) 60%,
+            transparent 70%);
+    animation: avatarGlow 4s ease-in-out infinite;
+    z-index: 0;
+    filter: blur(20px);
+}
+
+@keyframes avatarGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
 }
 
 .profile-avatar img {
@@ -23,15 +55,22 @@
     border-radius: 50%;
     object-fit: cover;
     z-index: 10;
-    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.25);
-    border: 4px solid #fff;
+    box-shadow:
+        0 8px 32px rgba(102, 126, 234, 0.3),
+        0 0 0 4px rgba(255, 255, 255, 0.9),
+        0 0 0 6px rgba(102, 126, 234, 0.15);
     position: relative;
     animation: avatarFloat 6s ease-in-out infinite;
-    transition: transform 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .profile-avatar:hover img {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow:
+        0 12px 40px rgba(102, 126, 234, 0.4),
+        0 0 0 4px rgba(255, 255, 255, 1),
+        0 0 0 8px rgba(102, 126, 234, 0.2),
+        0 0 60px rgba(102, 126, 234, 0.2);
 }
 
 @keyframes avatarFloat {
@@ -42,11 +81,11 @@
     }
 
     50% {
-        transform: translateY(-6px);
+        transform: translateY(-8px);
     }
 }
 
-/* Geometric Frames (New "Orbit" Design) */
+/* Geometric Frames (Enhanced Orbit Design) */
 .geo-frame {
     position: absolute;
     top: 50%;
@@ -57,44 +96,63 @@
     z-index: 1;
 }
 
-/* Layer 1: The main rotating gradient orbit */
+/* Layer 1: Main rotating gradient orbit with glow */
 .geo-layer-1 {
-    width: 170px;
-    height: 170px;
-    border: 2px solid transparent;
+    width: 160px;
+    height: 160px;
+    border: 3px solid transparent;
     border-radius: 50%;
-
-    /* Create a gradient border effect using a pseudo-element mask or simple colored borders for browser compatibility */
     border-top-color: #667eea;
-    /* Purple-ish */
     border-right-color: #764ba2;
-    /* Darker Purple */
     border-bottom-color: transparent;
-    /* Gap */
-    border-left-color: #667eea;
-
+    border-left-color: #f5576c;
     animation: orbitSpin 4s linear infinite;
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+    box-shadow:
+        0 0 20px rgba(102, 126, 234, 0.3),
+        inset 0 0 20px rgba(102, 126, 234, 0.1);
+    transition: all 0.4s ease;
 }
 
-/* Layer 2: Inner thin reverse orbit */
+.profile-avatar:hover .geo-layer-1 {
+    border-width: 4px;
+    box-shadow:
+        0 0 30px rgba(102, 126, 234, 0.5),
+        inset 0 0 30px rgba(102, 126, 234, 0.15);
+}
+
+/* Layer 2: Inner thin reverse orbit with pink accent */
 .geo-layer-2 {
-    width: 150px;
-    height: 150px;
-    border: 1px solid rgba(245, 87, 108, 0.5);
-    /* Pinkish */
+    width: 145px;
+    height: 145px;
+    border: 2px solid rgba(245, 87, 108, 0.4);
     border-top-color: transparent;
     border-bottom-color: transparent;
-    animation: orbitSpinReverse 6s linear infinite;
+    animation: orbitSpinReverse 8s linear infinite;
+    transition: all 0.4s ease;
 }
 
-/* Layer 3: Soft outer ripple/glow */
+.profile-avatar:hover .geo-layer-2 {
+    border-color: rgba(245, 87, 108, 0.6);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+/* Layer 3: Soft outer ripple/glow with pulse */
 .geo-layer-3 {
     width: 190px;
     height: 190px;
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.15);
     animation: orbitPulse 3s ease-in-out infinite;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 60%);
+    background: radial-gradient(circle,
+            rgba(102, 126, 234, 0.08) 0%,
+            rgba(118, 75, 162, 0.04) 40%,
+            transparent 60%);
+    transition: all 0.4s ease;
+}
+
+.profile-avatar:hover .geo-layer-3 {
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 @keyframes orbitSpin {
@@ -127,7 +185,7 @@
 
     50% {
         transform: translate(-50%, -50%) scale(1.05);
-        opacity: 0.8;
+        opacity: 0.9;
     }
 }
 
@@ -201,15 +259,15 @@
 
 
 /* -------------------------------------------
-   Navigation Cards (With Edge Effects)
+   Navigation Cards (Enhanced Design v2)
    ------------------------------------------- */
 .nav-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.65);
+    background: var(--bg-card);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 24px;
+    padding: 28px 24px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -217,145 +275,289 @@
     justify-content: center;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    height: 150px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    height: 160px;
+    border: 1px solid var(--border-light);
     box-shadow:
-        0 4px 20px -2px rgba(0, 0, 0, 0.05),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        0 4px 24px -4px var(--shadow-color),
+        0 1px 2px var(--shadow-color),
+        inset 0 1px 0 var(--border-subtle);
     overflow: hidden;
     z-index: 1;
+    /* Entry animation */
+    opacity: 0;
+    animation: cardSlideIn 0.6s ease-out forwards;
 }
 
-/* Gradient Border Effect via Pseudo-element opacity */
+/* Staggered card entry delays */
+.nav-card-1 {
+    animation-delay: 0.1s;
+}
+
+.nav-card-2 {
+    animation-delay: 0.15s;
+}
+
+.nav-card-3 {
+    animation-delay: 0.2s;
+}
+
+.nav-card-4 {
+    animation-delay: 0.25s;
+}
+
+.nav-card-5 {
+    animation-delay: 0.3s;
+}
+
+.nav-card-6 {
+    animation-delay: 0.35s;
+}
+
+/* 卡片顶部微光效果 */
+.nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.8) 20%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 0.8) 80%,
+            transparent);
+    opacity: 0.8;
+}
+
+/* 渐变边框效果 */
 .nav-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 20px;
-    padding: 2px;
-    /* Border width */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) border-box;
+    border-radius: 24px;
+    padding: 1.5px;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.8) 100%);
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+    opacity: 1;
+    transition: all 0.4s ease;
     pointer-events: none;
 }
 
 .nav-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-10px) scale(1.03);
+    background: var(--bg-card-hover);
     box-shadow:
-        0 20px 40px -5px rgba(102, 126, 234, 0.15),
-        0 10px 20px -5px rgba(102, 126, 234, 0.1);
+        0 25px 50px -12px var(--shadow-accent),
+        0 12px 24px -8px var(--shadow-accent),
+        0 0 0 1px rgba(102, 126, 234, 0.1),
+        inset 0 1px 0 var(--border-subtle);
     border-color: transparent;
-    /* Use gradient border or subtle tint */
 }
 
-/* Enhance Edge Effect on Hover */
+/* 悬停时渐变边框变为主题色 */
 .nav-card:hover::after {
-    background: var(--purple-gradient, linear-gradient(135deg, #667eea, #764ba2));
-    opacity: 1;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    background: var(--purple-gradient);
+    padding: 2px;
+    opacity: 0.8;
 }
 
-
-/* Card Icons */
+/* 图标容器 - 带背景圆 */
 .nav-card-icon {
-    font-size: 2.2em;
-    margin-bottom: 12px;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6em;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.05) 100%);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.nav-card-icon i {
     background: var(--purple-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.2));
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
+    transition: all 0.3s ease;
 }
 
 .nav-card h3 {
-    font-size: 1.15em;
-    color: #4a4a6a;
+    font-size: 1.1em;
+    color: var(--text-medium);
     font-weight: 700;
     margin: 0;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     letter-spacing: 0.02em;
 }
 
+/* 箭头指示器 */
 .nav-card-arrow {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 18px;
+    right: 18px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transform: translateX(-15px);
-    transition: all 0.4s ease;
+    transform: translateX(-10px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     color: #667eea;
-    font-size: 0.9em;
+    font-size: 0.75em;
 }
 
 .nav-card:hover .nav-card-arrow {
     opacity: 1;
     transform: translateX(0);
+    background: rgba(102, 126, 234, 0.12);
 }
 
 .nav-card:hover .nav-card-icon {
-    transform: scale(1.15) rotate(8deg);
+    transform: scale(1.1) translateY(-2px);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.08) 100%);
+    box-shadow: 0 8px 20px -4px rgba(102, 126, 234, 0.15);
 }
 
 .nav-card:hover h3 {
     color: #2c2c54;
+    transform: translateY(-1px);
 }
 
-/* Specific Card Colors */
-.nav-card-1 .nav-card-icon,
-.nav-card-1:hover::after {
+/* ============================================
+   Card Specific Colors (v2)
+   ============================================ */
+
+/* Card 1 - Purple (个人介绍) */
+.nav-card-1 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.08) 100%);
+}
+
+.nav-card-1 .nav-card-icon i {
     background: var(--purple-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-2 .nav-card-icon,
-.nav-card-2:hover::after {
+.nav-card-1:hover::after {
+    background: var(--purple-gradient);
+}
+
+.nav-card-1:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.12) 100%);
+    box-shadow: 0 8px 20px -4px rgba(102, 126, 234, 0.2);
+}
+
+/* Card 2 - Blue (学习领域) */
+.nav-card-2 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.12) 0%, rgba(0, 242, 254, 0.08) 100%);
+}
+
+.nav-card-2 .nav-card-icon i {
     background: var(--blue-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-3 .nav-card-icon,
-.nav-card-3:hover::after {
+.nav-card-2:hover::after {
+    background: var(--blue-gradient);
+}
+
+.nav-card-2:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.18) 0%, rgba(0, 242, 254, 0.12) 100%);
+    box-shadow: 0 8px 20px -4px rgba(79, 172, 254, 0.2);
+}
+
+/* Card 3 - Orange (获奖情况) */
+.nav-card-3 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(250, 112, 154, 0.12) 0%, rgba(254, 225, 64, 0.08) 100%);
+}
+
+.nav-card-3 .nav-card-icon i {
     background: var(--orange-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-4 .nav-card-icon,
-.nav-card-4:hover::after {
+.nav-card-3:hover::after {
+    background: var(--orange-gradient);
+}
+
+.nav-card-3:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(250, 112, 154, 0.18) 0%, rgba(254, 225, 64, 0.12) 100%);
+    box-shadow: 0 8px 20px -4px rgba(250, 112, 154, 0.2);
+}
+
+/* Card 4 - Pink (论文情况) */
+.nav-card-4 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.12) 0%, rgba(245, 87, 108, 0.08) 100%);
+}
+
+.nav-card-4 .nav-card-icon i {
     background: var(--pink-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-5 .nav-card-icon,
-.nav-card-5:hover::after {
-    background: var(--green-gradient);
-    -webkit-background-clip: text;
+.nav-card-4:hover::after {
+    background: var(--pink-gradient);
 }
 
-.nav-card-6 .nav-card-icon,
-.nav-card-6:hover::after {
+.nav-card-4:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.18) 0%, rgba(245, 87, 108, 0.12) 100%);
+    box-shadow: 0 8px 20px -4px rgba(240, 147, 251, 0.2);
+}
+
+/* Card 5 - Ocean (学习动态) */
+.nav-card-5 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.15) 0%, rgba(254, 214, 227, 0.1) 100%);
+}
+
+.nav-card-5 .nav-card-icon i {
     background: var(--ocean-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-7 .nav-card-icon,
-.nav-card-7:hover::after {
+.nav-card-5:hover::after {
+    background: var(--ocean-gradient);
+}
+
+.nav-card-5:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(168, 237, 234, 0.22) 0%, rgba(254, 214, 227, 0.15) 100%);
+    box-shadow: 0 8px 20px -4px rgba(168, 237, 234, 0.25);
+}
+
+/* Card 6 - Sunset (联系方式) */
+.nav-card-6 .nav-card-icon {
+    background: linear-gradient(135deg, rgba(255, 154, 158, 0.12) 0%, rgba(254, 207, 239, 0.08) 100%);
+}
+
+.nav-card-6 .nav-card-icon i {
     background: var(--sunset-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.nav-card-8 .nav-card-icon,
-.nav-card-8:hover::after {
-    background: var(--rainbow-gradient);
-    -webkit-background-clip: text;
+.nav-card-6:hover::after {
+    background: var(--sunset-gradient);
+}
+
+.nav-card-6:hover .nav-card-icon {
+    background: linear-gradient(135deg, rgba(255, 154, 158, 0.18) 0%, rgba(254, 207, 239, 0.12) 100%);
+    box-shadow: 0 8px 20px -4px rgba(255, 154, 158, 0.2);
 }

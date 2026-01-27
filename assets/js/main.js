@@ -28,7 +28,6 @@ function updateCountdown() {
         if (kaoyanDiff > 0) {
             const years = Math.floor(kaoyanDiff / 365);
             const days = kaoyanDiff % 365;
-            // Update for compact layout: "X Years Y Days" -> "X年Y天"
             kaoyanElement.textContent = `${years}年${days}天`;
             kaoyanElement.style.color = '#667eea';
         } else {
@@ -38,9 +37,63 @@ function updateCountdown() {
     }
 }
 
+// ============================================
+// 主题切换功能
+// ============================================
+
+// 获取当前主题
+function getTheme() {
+    // 优先从 localStorage 获取
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+    // 否则跟随系统偏好
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+// 设置主题
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+}
+
+// 切换主题
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || getTheme();
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+}
+
+// 初始化主题切换按钮
+function initThemeToggle() {
+    const toggleBtn = document.querySelector('.theme-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleTheme);
+    }
+}
+
+// ============================================
 // 页面加载时执行
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 初始化主题
+    const theme = getTheme();
+    setTheme(theme);
+    
+    // 初始化主题切换按钮
+    initThemeToggle();
+    
+    // 初始化倒计时
     updateCountdown();
     // 每天更新一次
     setInterval(updateCountdown, 1000 * 60 * 60 * 24);
+});
+
+// 监听系统主题变化
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // 只在用户没有手动设置过主题时响应系统变化
+    if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+    }
 });

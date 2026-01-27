@@ -35,20 +35,28 @@
 .hero-section {
     text-align: center;
     padding: 20px;
-    /* Drastically reduced from 120px... */
     position: relative;
     margin-bottom: 30px;
-    /* Reduced from 100px */
     background: transparent;
-    /* Remove background box for cleaner look in compact mode */
     box-shadow: none;
-    /* Remove shadow */
     display: flex;
     flex-direction: row;
-    /* Horizontal layout for compact header */
     align-items: center;
     justify-content: center;
     gap: 40px;
+    /* Entry animation */
+    animation: heroEntry 0.8s ease-out forwards;
+}
+
+/* Header content entry */
+.header-content {
+    text-align: left;
+    animation: titleReveal 0.8s ease-out 0.2s both;
+}
+
+/* Star countdown entry */
+.star-countdown {
+    animation: countdownPop 0.6s ease-out 0.4s both;
 }
 
 /* 顶部彩虹流光 - kept but minimal */
@@ -137,14 +145,11 @@
 
 .navigation-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* Force 4 columns */
-    gap: 20px;
-    /* Reduced from 35px */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     margin-top: 20px;
-    /* Reduced */
     margin-bottom: 20px;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .copyright {
