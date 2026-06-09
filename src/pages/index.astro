@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ModuleCard from "../components/ModuleCard.astro";
+
+const modules = [
+
+  {
+    index: "02",
+    id: "awards",
+    title: "获奖情况",
+    description: "归档竞赛奖项、荣誉称号、奖学金、科研训练或阶段性成果。",
+    items: ["奖项名称", "获奖时间", "奖项说明"]
+  },
+  {
+    index: "03",
+    id: "publications",
+    title: "论文情况",
+    description: "分为期刊/会议论文与预印本，后续也可以加入实验论文和技术报告。",
+    items: ["期刊 / 会议论文", "预印本：arXiv:2606.04409", "实验论文 / 技术报告"]
+  },
+  {
+    index: "04",
+    id: "notes",
+    title: "个人笔记",
+    description: "以分支结构组织不同方向的笔记，例如深度学习、计算机视觉、CNN、ResNet 系列。",
+    items: ["01 深度学习", "计算机视觉", "卷积神经网络 / ResNet"]
+  },
+  {
+    index: "05",
+    id: "learning",
+    title: "学习内容",
+    description: "记录读过的书、学过的网课、复现过的仓库以及长期学习路线。",
+    items: ["书籍", "网课", "仓库 / 项目资料"]
+  },
+  {
+    index: "06",
+    id: "contact",
+    title: "联系方式",
+    description: "保留 GitHub、邮箱以及未来可扩展的 Google Scholar、ORCID 等学术链接。",
+    items: ["GitHub: YidiZhouluo", "Email: 待补充", "学术链接：待补充"]
+  }
+];
+---
+
+<BaseLayout>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Personal Academic Website</p>
+      <h1>YidiZhouluo</h1>
+      <p class="hero-subtitle">深度学习、计算机视觉与医学图像分析方向学习者</p>
+      <p class="hero-text">
+        这里将作为我的个人信息归档、学术成长记录、论文与实验文档入口、个人笔记索引和学习内容目录。
+        当前主页先建立信息结构，后续再逐步补充真实内容和独立子页面。
+      </p>
+    </section>
+
+    <section class="module-grid" aria-label="主页模块">
+      // 个人信息模块
+      <article class="profile-card" id="about">
+        <div class="profile-photo-wrap">
+          <img
+            src="/images/profile/profile-blue-bg.jpg"
+            alt="Yidi Zhouluo 的个人照"
+            class="profile-photo"
+          />
+        </div>
+
+        <div class="profile-info">
+          <h2>个人介绍</h2>
+
+          <dl class="profile-meta">
+            <div>
+              <dt>姓名</dt>
+              <dd><span class="english">Yidi Zhouluo</span>（周罗义迪）</dd>
+            </div>
+
+            <div>
+              <dt>目前就读学校</dt>
+              <dd>山东第一医科大学 - 医学信息与人工智能学院</dd>
+            </div>
+
+            <div>
+              <dt>学习方向</dt>
+              <dd>医学人工智能、医学图像分割、人工智能</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+      {modules.map((module) => <ModuleCard {...module} />)}
+    </section>
+  </main>
+</BaseLayout>

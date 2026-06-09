@@ -1,2 +1,16 @@
-# zlyd-CV.github.io
-个人网站：https://zlyd-cv.github.io/
+# YidiZhouluo.github.io
+
+个人学术主页，使用 Astro 构建并部署到 GitHub Pages。
+
+## 本地开发
+
+```powershell
+npm install
+npm run dev
+```
+
+## 构建
+
+```powershell
+npm run build
+```

@@ -1,0 +1,37 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "YidiZhouluo | 个人学术主页",
+  description = "YidiZhouluo 的个人学术主页。"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">YidiZhouluo</a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#about">个人介绍</a>
+        <a href="#awards">获奖情况</a>
+        <a href="#publications">论文情况</a>
+        <a href="#notes">个人笔记</a>
+        <a href="#learning">学习内容</a>
+        <a href="#contact">联系方式</a>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <p>© 2026 YidiZhouluo. Personal academic archive in progress.</p>
+    </footer>
+  </body>
+</html>
