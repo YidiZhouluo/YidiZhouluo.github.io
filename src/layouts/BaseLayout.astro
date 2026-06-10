@@ -2,8 +2,8 @@
 import "../styles/global.css";
 
 const {
-  title = "YidiZhouluo | 个人学术主页",
-  description = "YidiZhouluo 的个人学术主页。"
+  title = "周罗义迪个人网站",
+  description = "周罗义迪的个人学术主页。"
 } = Astro.props;
 ---
 
@@ -13,18 +13,20 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="icon" href="/images/ico/web_ico.jpg" type="image/jpeg" />
     <title>{title}</title>
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">YidiZhouluo</a>
+      <a class="brand" href="/">周罗义迪个人网站</a>
       <nav class="site-nav" aria-label="主导航">
-        <a href="#about">个人介绍</a>
-        <a href="#awards">获奖情况</a>
-        <a href="#publications">论文情况</a>
-        <a href="#notes">个人笔记</a>
-        <a href="#learning">学习内容</a>
-        <a href="#contact">联系方式</a>
+        <a href="/">主页</a>
+        <a href="/introduction/">个人介绍</a>
+        <a href="/awards/">获奖情况</a>
+        <a href="/#publications">论文情况</a>
+        <a href="/#notes">个人笔记</a>
+        <a href="/#learning">学习内容</a>
+        <a href="/#contact">联系方式</a>
       </nav>
     </header>
 

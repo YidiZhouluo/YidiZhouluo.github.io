@@ -1,12 +1,25 @@
 ---
-const { index, id, title, description, items } = Astro.props;
+const { index, id, title, description, items, href } = Astro.props;
 ---
 
-<article class="module-card" id={id}>
-  <span class="module-index">{index}</span>
-  <h2>{title}</h2>
-  <p>{description}</p>
-  <ul>
-    {items.map((item) => <li>{item}</li>)}
-  </ul>
-</article>
+{
+  href ? (
+    <a class="module-card module-card-link" id={id} href={href}>
+      <span class="module-index">{index}</span>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <ul>
+        {items.map((item) => <li>{item}</li>)}
+      </ul>
+    </a>
+  ) : (
+    <article class="module-card" id={id}>
+      <span class="module-index">{index}</span>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <ul>
+        {items.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+  )
+}

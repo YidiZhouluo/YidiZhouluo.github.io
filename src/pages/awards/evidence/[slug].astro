@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { awardItems } from "../../../data/awards.js";
+
+const evidenceLabel = "\u4F50\u8BC1\u6750\u6599";
+
+export function getStaticPaths() {
+  return awardItems.map((award) => ({
+    params: { slug: award.slug },
+    props: { award }
+  }));
+}
+
+const { award } = Astro.props;
+---
+
+<BaseLayout title={`${award.title} | ${evidenceLabel}`} description={`${award.title}\u7684${evidenceLabel}\u3002`}>
+  <main class="content-page">
+    <section class="page-heading">
+      <h1>{evidenceLabel}</h1>
+    </section>
+
+    <section class="info-section evidence-section">
+      <div class="section-title-row">
+        <h2>{award.title}</h2>
+      </div>
+
+      <article class="evidence-detail">
+        <div class="evidence-meta">
+          <span>{award.dateLabel}</span>
+        </div>
+        <img src={award.evidenceImage} alt={`${award.title} ${evidenceLabel}`} />
+      </article>
+    </section>
+  </main>
+</BaseLayout>

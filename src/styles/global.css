@@ -9,7 +9,31 @@
   --gold: #a36a16;
   --shadow: 0 16px 38px rgba(23, 32, 51, 0.08);
   --radius: 8px;
-  --max-width: 1120px;
+  --max-width: 1220px;
+}
+
+@font-face {
+  font-family: "TitleMixed";
+  src: local("Times New Roman");
+  unicode-range: U+0000-024F;
+}
+
+@font-face {
+  font-family: "TitleMixed";
+  src: local("STXinwei"), local("华文新魏");
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "ContentMixed";
+  src: local("Times New Roman");
+  unicode-range: U+0000-024F;
+}
+
+@font-face {
+  font-family: "ContentMixed";
+  src: local("KaiTi"), local("STKaiti"), local("楷体");
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+3000-303F, U+FF00-FFEF;
 }
 
 * {
@@ -24,7 +48,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  font-family: "ContentMixed", KaiTi, "STKaiti", "楷体", "Times New Roman", serif;
   line-height: 1.7;
 }
 
@@ -48,6 +72,7 @@ a {
 }
 
 .brand {
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-size: 1.06rem;
   font-weight: 700;
 }
@@ -62,6 +87,7 @@ a {
 .site-nav a {
   border-radius: 999px;
   color: var(--muted);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-size: 0.92rem;
   padding: 6px 11px;
 }
@@ -76,60 +102,139 @@ main {
   margin: 0 auto;
 }
 
-.hero {
-  margin: 34px 0 18px;
-  padding: clamp(28px, 6vw, 58px);
+.home-shell {
+  width: min(100% - 40px, 1900px);
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, var(--max-width)) minmax(260px, 320px);
+  gap: 28px;
+  align-items: start;
+}
+
+.home-main {
+  min-width: 0;
+}
+
+.side-panel {
+  padding: 20px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
+.side-panel-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
 }
 
-h1,
+.side-panel-heading span {
+  color: var(--text);
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.side-panel-heading small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.recent-list,
+.countdown-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.recent-list {
+  padding-right: 0;
+}
+
+.recent-item,
+.countdown-item {
+  padding: 14px;
+  background: #fbfcfe;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.recent-date,
+.recent-item time,
+.countdown-item time {
+  display: block;
+  color: var(--muted);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.88rem;
+}
+
+.recent-date.pending {
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+}
+
+.recent-type {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.recent-item h2,
+.countdown-item h2 {
+  margin: 10px 0 6px;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.recent-item h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.recent-item h2 a:hover {
+  color: var(--accent);
+}
+
+.recent-item p,
+.countdown-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.countdown-days {
+  color: var(--accent) !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 h2,
 p,
 li {
   overflow-wrap: anywhere;
 }
 
-h1 {
-  margin: 0;
-  font-size: clamp(2.3rem, 6vw, 4.8rem);
-  line-height: 1.05;
-  letter-spacing: 0;
-}
-
-.hero-subtitle {
-  margin: 16px 0 0;
-  color: var(--accent);
-  font-size: 1.15rem;
-  font-weight: 650;
-}
-
-.hero-text {
-  max-width: 820px;
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 1.02rem;
-}
-
 .module-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  margin: 18px 0 34px;
+  margin: 34px 0;
 }
 
 .module-card {
+  display: block;
   min-height: 260px;
   padding: 24px;
   background: var(--surface);
@@ -142,6 +247,7 @@ h1 {
   transform: translateY(-2px);
   transition: transform 160ms ease, border-color 160ms ease;
   border-color: rgba(37, 109, 123, 0.36);
+  text-decoration: none;
 }
 
 .module-index {
@@ -153,12 +259,14 @@ h1 {
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-size: 0.82rem;
   font-weight: 700;
 }
 
 .module-card h2 {
   margin: 18px 0 8px;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-size: 1.35rem;
   letter-spacing: 0;
 }
@@ -176,6 +284,10 @@ h1 {
 
 .module-card li + li {
   margin-top: 6px;
+}
+
+.module-card-link {
+  cursor: pointer;
 }
 
 .module-card:nth-child(3n + 2) .module-index {
@@ -196,6 +308,506 @@ h1 {
   font-size: 0.92rem;
 }
 
+.content-page {
+  padding: 34px 0 48px;
+}
+
+.page-heading,
+.info-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.page-heading {
+  padding: 34px;
+  margin-bottom: 20px;
+}
+
+.page-heading p {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.12;
+}
+
+.page-heading span {
+  display: block;
+  max-width: 760px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.info-section {
+  padding: 28px;
+}
+
+.info-section + .info-section {
+  margin-top: 20px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title-row h2 {
+  margin: 0;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.6rem;
+}
+
+.section-title-row span {
+  color: var(--muted);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.info-box {
+  min-height: 240px;
+  padding: 20px;
+  background: #fbfcfe;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.info-box h3 {
+  margin: 0 0 16px;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.2rem;
+}
+
+.fact-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.fact-list div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fact-list dt {
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.fact-list dd {
+  margin: 0;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-list li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.education-marker {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.school-logo-slot {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.school-logo-slot img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.education-content {
+  min-width: 0;
+}
+
+.education-marker span {
+  display: inline-flex;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.timeline-list strong {
+  display: block;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.timeline-list p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.exam-list {
+  display: grid;
+  gap: 14px;
+}
+
+.membership-list {
+  display: grid;
+  gap: 14px;
+}
+
+.membership-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.membership-card strong {
+  display: block;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.membership-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.date-chip {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 12px;
+  border: 1px solid #cfe4ea;
+  border-radius: 999px;
+  background: #f4fbfd;
+  color: var(--accent);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.direction-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.keyword-card {
+  min-height: 112px;
+  padding: 14px 16px;
+  border: 1px solid #cfe4ea;
+  border-radius: var(--radius);
+  background: #f4fbfd;
+}
+
+.keyword-card h3,
+.direction-summary h3 {
+  margin: 0 0 8px;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.08rem;
+}
+
+.keyword-card h3 {
+  color: var(--accent);
+}
+
+.keyword-card p,
+.direction-summary p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.direction-summary {
+  padding: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+}
+
+.empty-note {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  color: var(--muted);
+}
+
+.exam-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.status-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.status-mark.passed {
+  background: #e6f5ec;
+  color: #2d7b4f;
+}
+
+.status-mark.pending {
+  background: #fff1f1;
+  color: #b54747;
+}
+
+.exam-item strong {
+  display: block;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+}
+
+.exam-item p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.award-timeline {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+  margin: 0;
+}
+
+.award-entry {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 720px);
+  gap: 18px;
+  align-items: center;
+}
+
+.award-time {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.award-time::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  width: 8px;
+  height: 8px;
+  border: 3px solid var(--accent);
+  border-radius: 999px;
+  background: var(--surface);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.award-time::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: -7px;
+  width: 1px;
+  height: calc(100% + 32px);
+  background: var(--line-strong);
+}
+
+.award-entry:last-child .award-time::after {
+  height: calc(50% + 16px);
+}
+
+.award-date-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 6px 12px;
+  border: 1px solid #eadfca;
+  border-radius: 999px;
+  background: #fff8ed;
+  color: var(--gold);
+  font-family: "Times New Roman", "ContentMixed", serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.award-card {
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfe;
+}
+
+.award-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.award-card h3 {
+  margin: 0;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.award-card-header .evidence-link {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.award-card-header span {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.award-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.award-issuer {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.award-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.award-tags span {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.evidence-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 16px;
+  color: #1d5fd0;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.evidence-link:hover {
+  color: #1547a0;
+}
+
+.evidence-section {
+  overflow: hidden;
+}
+
+.evidence-detail {
+  display: grid;
+  gap: 18px;
+}
+
+.evidence-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.evidence-meta span {
+  padding: 6px 12px;
+  border: 1px solid #cfe4ea;
+  border-radius: 999px;
+  background: #f4fbfd;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.evidence-detail p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.evidence-detail img {
+  width: 100%;
+  max-height: 760px;
+  object-fit: contain;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
@@ -206,7 +818,20 @@ h1 {
     justify-content: flex-start;
   }
 
+  .home-shell {
+    width: min(100% - 32px, var(--max-width));
+    grid-template-columns: 1fr;
+  }
+
   .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .keyword-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -225,18 +850,75 @@ h1 {
     padding: 5px 9px;
   }
 
-  .hero {
-    margin-top: 22px;
-    padding: 22px;
-  }
-
   .module-grid {
     grid-template-columns: 1fr;
+    margin-top: 22px;
   }
 
   .module-card {
     min-height: auto;
     padding: 20px;
+  }
+
+  .page-heading,
+  .info-section {
+    padding: 20px;
+  }
+
+  .section-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fact-list div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .timeline-list li {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .school-logo-slot {
+    width: 56px;
+    height: 56px;
+  }
+
+  .school-logo-slot img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .keyword-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .award-entry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .award-time {
+    justify-content: flex-start;
+    padding: 0 0 0 24px;
+  }
+
+  .award-time::before {
+    left: 0;
+    right: auto;
+    top: 50%;
+  }
+
+  .award-time::after {
+    left: 7px;
+    right: auto;
+    top: -14px;
+  }
+
+  .award-card-header {
+    align-items: center;
+    flex-direction: row;
   }
 }
 
@@ -272,7 +954,7 @@ h1 {
 .profile-info h2 {
   margin: 0 0 20px;
   font-size: 1.45rem;
-  font-family: "Microsoft YaHei", "SimHei", sans-serif;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
 }
 
 .profile-meta {
@@ -291,15 +973,23 @@ h1 {
 
 .profile-meta dt {
   color: var(--text);
-  font-family: "Microsoft YaHei", "SimHei", sans-serif;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-weight: 700;
 }
 
 .profile-meta dd {
   margin: 0;
   color: var(--text);
-  font-family: KaiTi, "STKaiti", "楷体", serif;
+  font-family: "ContentMixed", KaiTi, "STKaiti", "楷体", "Times New Roman", serif;
   font-size: 1.08rem;
+}
+
+.profile-meta dd a {
+  color: var(--text);
+}
+
+.profile-meta dd a:hover {
+  color: var(--accent);
 }
 
 .english {

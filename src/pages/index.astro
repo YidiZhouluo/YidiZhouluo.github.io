@@ -1,15 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ModuleCard from "../components/ModuleCard.astro";
+import { getRecentItems } from "../data/recent.js";
 
 const modules = [
-
+  {
+    index: "01",
+    id: "introduction",
+    title: "个人介绍",
+    description: "归档个人基本信息、教育经历、语言考试、实习经历与学习方向说明。",
+    items: ["个人基本信息", "教育经历", "学习方向"],
+    href: "/introduction/"
+  },
   {
     index: "02",
     id: "awards",
     title: "获奖情况",
-    description: "归档竞赛奖项、荣誉称号、奖学金、科研训练或阶段性成果。",
-    items: ["奖项名称", "获奖时间", "奖项说明"]
+    description: "按时间轴归档大学阶段竞赛奖项、荣誉称号、奖学金与阶段性成果。",
+    items: ["大学阶段奖项", "获奖时间轴", "证书与说明"],
+    href: "/awards/"
   },
   {
     index: "03",
@@ -37,56 +46,123 @@ const modules = [
     id: "contact",
     title: "联系方式",
     description: "保留 GitHub、邮箱以及未来可扩展的 Google Scholar、ORCID 等学术链接。",
-    items: ["GitHub: YidiZhouluo", "Email: 待补充", "学术链接：待补充"]
+    items: ["GitHub: YidiZhouluo", "Email: zhoulyd@126.com", "学术链接：待补充"]
+  }
+];
+
+const recentItems = getRecentItems(5);
+
+const countdownEvents = [
+  {
+    title: "2026 年 12 月英语六级",
+    date: "2026-12-19T15:00:00+08:00",
+    note: "预计：12 月第三个周六，待官方通知"
+  },
+  {
+    title: "2028 考研初试",
+    date: "2027-12-25T08:30:00+08:00",
+    note: "预计：12 月 27 日前最后一个周六，待官方通知"
   }
 ];
 ---
 
 <BaseLayout>
-  <main>
-    <section class="hero">
-      <p class="eyebrow">Personal Academic Website</p>
-      <h1>YidiZhouluo</h1>
-      <p class="hero-subtitle">深度学习、计算机视觉与医学图像分析方向学习者</p>
-      <p class="hero-text">
-        这里将作为我的个人信息归档、学术成长记录、论文与实验文档入口、个人笔记索引和学习内容目录。
-        当前主页先建立信息结构，后续再逐步补充真实内容和独立子页面。
-      </p>
+  <main class="home-shell">
+    <aside class="side-panel recent-panel" aria-label="近期成果">
+      <div class="side-panel-heading">
+        <span>近期成果</span>
+        <small>按日期倒序</small>
+      </div>
+      <div class="recent-list">
+        {recentItems.map((item) => (
+          <article class="recent-item">
+            <time datetime={item.date}>{item.dateLabel}</time>
+            <span class="recent-type">{item.type}</span>
+            <h2>
+              {item.href ? <a href={item.href}>{item.title}</a> : item.title}
+            </h2>
+            <p>{item.meta}</p>
+          </article>
+        ))}
+      </div>
+    </aside>
+
+    <section class="home-main" aria-label="主页模块">
+      <section class="module-grid">
+        <article class="profile-card" id="about">
+          <div class="profile-photo-wrap">
+            <img
+              src="/images/profile/profile-blue-bg.jpg"
+              alt="Yidi Zhouluo 的个人照"
+              class="profile-photo"
+            />
+          </div>
+
+          <div class="profile-info">
+            <h2>个人信息</h2>
+
+            <dl class="profile-meta">
+              <div>
+                <dt>姓名</dt>
+                <dd><span class="english">Yidi Zhouluo</span>（周罗义迪）</dd>
+              </div>
+
+              <div>
+                <dt>目前就读学校</dt>
+                <dd>山东第一医科大学 - 医学信息与人工智能学院</dd>
+              </div>
+
+              <div>
+                <dt>学习方向</dt>
+                <dd>医学人工智能、医学图像分割、人工智能</dd>
+              </div>
+
+              <div>
+                <dt>邮箱</dt>
+                <dd><a class="email-link" href="mailto:zhoulyd@126.com">zhoulyd@126.com</a></dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+        {modules.map((module) => <ModuleCard {...module} />)}
+      </section>
     </section>
 
-    <section class="module-grid" aria-label="主页模块">
-      // 个人信息模块
-      <article class="profile-card" id="about">
-        <div class="profile-photo-wrap">
-          <img
-            src="/images/profile/profile-blue-bg.jpg"
-            alt="Yidi Zhouluo 的个人照"
-            class="profile-photo"
-          />
-        </div>
-
-        <div class="profile-info">
-          <h2>个人介绍</h2>
-
-          <dl class="profile-meta">
-            <div>
-              <dt>姓名</dt>
-              <dd><span class="english">Yidi Zhouluo</span>（周罗义迪）</dd>
-            </div>
-
-            <div>
-              <dt>目前就读学校</dt>
-              <dd>山东第一医科大学 - 医学信息与人工智能学院</dd>
-            </div>
-
-            <div>
-              <dt>学习方向</dt>
-              <dd>医学人工智能、医学图像分割、人工智能</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-      {modules.map((module) => <ModuleCard {...module} />)}
-    </section>
+    <aside class="side-panel countdown-panel" aria-label="重要事件倒计时">
+      <div class="side-panel-heading">
+        <span>重要事件倒计时</span>
+        <small>预计日期</small>
+      </div>
+      <div class="countdown-list">
+        {countdownEvents.map((event) => (
+          <article class="countdown-item" data-countdown-date={event.date}>
+            <h2>{event.title}</h2>
+            <p class="countdown-days" data-countdown-days>计算中</p>
+            <time>{event.date.slice(0, 10)}</time>
+            <p>{event.note}</p>
+          </article>
+        ))}
+      </div>
+    </aside>
   </main>
+
+  <script>
+    const dayMs = 24 * 60 * 60 * 1000;
+
+    function updateCountdowns() {
+      const now = new Date();
+
+      document.querySelectorAll("[data-countdown-date]").forEach((card) => {
+        const target = new Date(card.dataset.countdownDate);
+        const output = card.querySelector("[data-countdown-days]");
+        const diffDays = Math.ceil((target.getTime() - now.getTime()) / dayMs);
+
+        if (!output) return;
+        output.textContent = diffDays > 0 ? `还有 ${diffDays} 天` : "已到达";
+      });
+    }
+
+    updateCountdowns();
+    window.setInterval(updateCountdowns, 60 * 60 * 1000);
+  </script>
 </BaseLayout>
