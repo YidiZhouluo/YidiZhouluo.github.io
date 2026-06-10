@@ -909,6 +909,79 @@ li {
   color: #1547a0;
 }
 
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.contact-group {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfe;
+}
+
+.contact-group h3 {
+  margin: 0 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.18rem;
+}
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.contact-card div {
+  display: grid;
+  gap: 5px;
+}
+
+.contact-card span {
+  color: var(--muted);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.contact-card a {
+  color: #1d5fd0;
+  font-family: "Times New Roman", "ContentMixed", serif;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.contact-card a:hover {
+  color: #1547a0;
+}
+
+.contact-card strong {
+  font-family: "Times New Roman", "ContentMixed", serif;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.contact-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
@@ -937,6 +1010,10 @@ li {
   }
 
   .publication-rails {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 }

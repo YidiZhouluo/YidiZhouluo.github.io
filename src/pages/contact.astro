@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { contactGroups } from "../data/contacts.js";
+---
+
+<BaseLayout title="联系方式 | 周罗义迪个人网站" description="周罗义迪的邮箱、学术主页、代码平台与社交平台联系方式。">
+  <main class="content-page">
+    <section class="page-heading">
+      <h1>联系方式</h1>
+    </section>
+
+    <section class="info-section">
+      <div class="section-title-row">
+        <h2>联系与学术主页</h2>
+      </div>
+
+      <div class="contact-grid">
+        {contactGroups.map((group) => (
+          <section class="contact-group">
+            <h3>{group.title}</h3>
+            <div class="contact-list">
+              {group.items.map((item) => (
+                <article class="contact-card">
+                  <div>
+                    <span>{item.label}</span>
+                    {item.href ? (
+                      <a href={item.href} target={item.href.startsWith("mailto:") ? undefined : "_blank"} rel={item.href.startsWith("mailto:") ? undefined : "noreferrer"}>
+                        {item.value}
+                      </a>
+                    ) : (
+                      <strong>{item.value}</strong>
+                    )}
+                  </div>
+                  {item.note && <p>{item.note}</p>}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
