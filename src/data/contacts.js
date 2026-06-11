@@ -15,8 +15,7 @@ export const contactGroups = [
       {
         label: "教育邮箱",
         value: "4124530079@email.sdfmu.edu.cn",
-        href: "mailto:4124530079@email.sdfmu.edu.cn",
-        note: "教育邮箱"
+        href: "mailto:4124530079@email.sdfmu.edu.cn"
       }
     ]
   },
