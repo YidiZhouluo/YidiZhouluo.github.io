@@ -4,7 +4,11 @@ export const awardItems = [
     date: "2026-06",
     dateLabel: "2026年6月",
     title: "正大杯省级三等奖",
-    evidenceImage: "/images/awards/zhengda-cup-provincial-third.jpg"
+    evidenceImage: "/images/awards/zhengda-cup-provincial-third.jpg",
+    recordImages: [
+      "/images/awards/zhengda-field-record-1.jpg",
+      "/images/awards/zhengda-field-record-2.jpg"
+    ]
   },
   {
     slug: "srtp-national-project",

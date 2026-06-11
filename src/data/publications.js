@@ -11,6 +11,7 @@ export const publicationItems = [
     badge: "Preprint",
     meta: "arXiv:2606.04409",
     href: "/publications/",
-    arxiv: "https://arxiv.org/abs/2606.04409"
+    arxiv: "https://arxiv.org/abs/2606.04409",
+    github: "https://github.com/YidiZhouluo/DeepLearning-Empirical-Studies/tree/main/Exp_01"
   }
 ];

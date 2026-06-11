@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const learningItems = await getCollection("learning");
+const sortedItems = [...learningItems].sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const sections = [
+  { type: "book", title: "书籍" },
+  { type: "video", title: "视频课程" },
+  { type: "repo", title: "代码仓库" }
+];
+---
+
+<BaseLayout title="学习内容 | 周罗义迪个人网站" description="周罗义迪读过的书、学习过的视频课程与参考过的代码仓库。">
+  <main class="content-page">
+    <section class="page-heading">
+      <h1>学习内容</h1>
+    </section>
+
+    {sections.map((section) => {
+      const items = sortedItems.filter((item) => item.data.type === section.type);
+
+      return (
+        <section class="info-section learning-section">
+          <div class="section-title-row">
+            <h2>{section.title}</h2>
+          </div>
+
+          <div class="learning-grid">
+            {items.map((item) => (
+              <a class="learning-card" href={`/learning/${item.slug}/`}>
+                <div class="learning-cover">
+                  <img src={item.data.cover} alt={`${item.data.title} 封面`} />
+                </div>
+                <div class="learning-card-body">
+                  <div class="learning-card-head">
+                    <small>{item.data.status}</small>
+                    <small>{item.data.depth}</small>
+                  </div>
+                  <h3>{item.data.title}</h3>
+                  <p>{item.data.author}</p>
+                  <div class="learning-tags">
+                    {item.data.tags.map((tag) => <span>{tag}</span>)}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </main>
+</BaseLayout>

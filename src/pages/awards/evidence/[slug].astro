@@ -1,17 +1,25 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { awardItems } from "../../../data/awards.js";
+import { getCollection, render } from "astro:content";
 
 const evidenceLabel = "\u4F50\u8BC1\u6750\u6599";
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const awardNotes = await getCollection("awards");
+
   return awardItems.map((award) => ({
     params: { slug: award.slug },
-    props: { award }
+    props: {
+      award,
+      awardNote: awardNotes.find((note) => note.slug === award.slug)
+    }
   }));
 }
 
-const { award } = Astro.props;
+const { award, awardNote } = Astro.props;
+const renderedAwardNote = awardNote ? await render(awardNote) : null;
+const AwardNoteContent = renderedAwardNote?.Content;
 ---
 
 <BaseLayout title={`${award.title} | ${evidenceLabel}`} description={`${award.title}\u7684${evidenceLabel}\u3002`}>
@@ -29,7 +37,23 @@ const { award } = Astro.props;
         <div class="evidence-meta">
           <span>{award.dateLabel}</span>
         </div>
+        {AwardNoteContent && (
+          <section class="evidence-summary">
+            <h3>总结</h3>
+            <AwardNoteContent />
+          </section>
+        )}
         <img src={award.evidenceImage} alt={`${award.title} ${evidenceLabel}`} />
+        {award.recordImages && award.recordImages.length > 0 && (
+          <section class="evidence-records">
+            <h3>比赛记录</h3>
+            <div class="evidence-record-grid">
+              {award.recordImages.map((image, index) => (
+                <img src={image} alt={`${award.title} 比赛记录 ${index + 1}`} />
+              ))}
+            </div>
+          </section>
+        )}
       </article>
     </section>
   </main>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const learningItems = await getCollection("learning");
+
+  return learningItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<BaseLayout title={`${item.data.title} | 学习内容`} description={`${item.data.title} 的学习记录。`}>
+  <main class="content-page">
+    <article class="learning-detail">
+      <div class="learning-detail-cover">
+        <img src={item.data.cover} alt={`${item.data.title} 封面`} />
+      </div>
+
+      <div class="learning-detail-main">
+        <a class="back-link" href="/learning/">返回学习内容</a>
+        <div class="learning-card-head">
+          <small>{item.data.status}</small>
+          <small>{item.data.depth}</small>
+        </div>
+        <h1>{item.data.title}</h1>
+        <dl class="learning-meta">
+          <div>
+            <dt>类型</dt>
+            <dd>{item.data.typeLabel}</dd>
+          </div>
+          <div>
+            <dt>作者 / 来源</dt>
+            <dd>{item.data.author}</dd>
+          </div>
+          <div>
+            <dt>记录时间</dt>
+            <dd>{item.data.date}</dd>
+          </div>
+          {item.data.source && (
+            <div>
+              <dt>来源</dt>
+              <dd>{item.data.source}</dd>
+            </div>
+          )}
+        </dl>
+
+        <div class="learning-tags">
+          {item.data.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+
+        <div class="learning-review">
+          <Content />
+        </div>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

@@ -48,7 +48,10 @@ const preprintPublications = sortedPublications.filter((item) => item.category !
                       <dd>{paper.dateLabel}</dd>
                     </div>
                   </dl>
-                  {paper.arxiv && <a class="paper-link" href={paper.arxiv} target="_blank" rel="noreferrer">arXiv 链接</a>}
+                  <div class="paper-link-row">
+                    {paper.arxiv && <a class="paper-link" href={paper.arxiv} target="_blank" rel="noreferrer">arXiv 链接</a>}
+                    {paper.github && <a class="paper-link" href={paper.github} target="_blank" rel="noreferrer">GitHub 链接</a>}
+                  </div>
                 </article>
               ))}
             </div>
@@ -85,7 +88,10 @@ const preprintPublications = sortedPublications.filter((item) => item.category !
                     <dd>{paper.dateLabel}</dd>
                   </div>
                 </dl>
-                {paper.arxiv && <a class="paper-link" href={paper.arxiv} target="_blank" rel="noreferrer">arXiv 链接</a>}
+                <div class="paper-link-row">
+                  {paper.arxiv && <a class="paper-link" href={paper.arxiv} target="_blank" rel="noreferrer">arXiv 链接</a>}
+                  {paper.github && <a class="paper-link" href={paper.github} target="_blank" rel="noreferrer">GitHub 链接</a>}
+                </div>
               </article>
             ))}
           </div>
