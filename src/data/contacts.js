@@ -1,4 +1,4 @@
-export const contactGroups = [
+﻿export const contactGroups = [
   {
     title: "邮箱",
     items: [
@@ -58,7 +58,8 @@ export const contactGroups = [
       },
       {
         label: "ResearchGate",
-        value: "暂未开通",
+        value: "Yidi Zhouluo",
+        href: "https://www.researchgate.net/profile/Yidi-Zhouluo?ev=hdr_xprf",
         icon: "/images/contact/researchgate.png",
         iconAlt: "ResearchGate"
       }
@@ -107,3 +108,6 @@ export const contactGroups = [
     ]
   }
 ];
+
+
+

@@ -1057,9 +1057,15 @@ li {
   box-shadow: var(--shadow);
 }
 
+.learning-detail-media {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+}
+
 .learning-detail-cover {
   overflow: hidden;
-  align-self: start;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #eef3f7;
@@ -1079,11 +1085,27 @@ li {
 
 .back-link {
   display: inline-flex;
-  margin-bottom: 18px;
-  color: #1d5fd0;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 7px 14px;
+  border: 1px solid #bfd4e6;
+  border-radius: 999px;
+  background: #f7fbfd;
+  color: #1c6480;
   font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(24, 62, 92, 0.08);
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.back-link:hover {
+  transform: translateY(-1px);
+  border-color: #7bb6c7;
+  background: #e9f6f8;
+  box-shadow: 0 12px 22px rgba(24, 62, 92, 0.12);
 }
 
 .learning-detail h1 {

@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { publicationItems } from "../data/publications.js";
 
@@ -70,7 +70,7 @@ const preprintPublications = sortedPublications.filter((item) => item.category !
               <article class="publication-card">
                 <div class="publication-card-head">
                   <h4>{paper.title}</h4>
-                  <span>{paper.badge}</span>
+                  <span>{paper.type}</span>
                 </div>
                 <dl class="publication-meta">
                   <div>
@@ -100,3 +100,4 @@ const preprintPublications = sortedPublications.filter((item) => item.category !
     </section>
   </main>
 </BaseLayout>
+

@@ -1,4 +1,4 @@
-import { awardItems } from "./awards.js";
+﻿import { awardItems } from "./awards.js";
 import { publicationItems } from "./publications.js";
 
 const normalizeDate = (date) => {
@@ -9,7 +9,7 @@ const normalizeDate = (date) => {
 const toRecentAward = (award) => ({
   date: normalizeDate(award.date),
   dateLabel: award.dateLabel,
-  type: "获奖",
+  type: award.type,
   title: award.title,
   meta: "大学阶段获奖记录",
   href: "/awards/"
@@ -34,3 +34,4 @@ export const getRecentItems = (limit = 5) => (
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, limit)
 );
+

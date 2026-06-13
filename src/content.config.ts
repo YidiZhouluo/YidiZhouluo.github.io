@@ -12,7 +12,8 @@ const learning = defineCollection({
     depth: z.string(),
     date: z.string(),
     tags: z.array(z.string()).default([]),
-    source: z.string().optional()
+    source: z.string().optional(),
+    sourceHref: z.string().url().optional()
   })
 });
 

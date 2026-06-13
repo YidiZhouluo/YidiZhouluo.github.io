@@ -1,4 +1,4 @@
-export const publicationItems = [
+﻿export const publicationItems = [
   {
     slug: "visual-generalization-2026",
     date: "2026-06-04",
@@ -8,10 +8,11 @@ export const publicationItems = [
     title: "An Empirical Study of Data Scale, Model Complexity, and Input Modalities in Visual Generalization",
     doi: "https://doi.org/10.48550/arXiv.2606.04409",
     venue: "arXiv",
-    badge: "Preprint",
+    badge: "预印本",
     meta: "arXiv:2606.04409",
     href: "/publications/",
     arxiv: "https://arxiv.org/abs/2606.04409",
     github: "https://github.com/YidiZhouluo/DeepLearning-Empirical-Studies/tree/main/Exp_01"
   }
 ];
+

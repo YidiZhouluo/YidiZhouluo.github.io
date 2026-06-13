@@ -18,12 +18,14 @@ const { Content } = await render(item);
 <BaseLayout title={`${item.data.title} | 学习内容`} description={`${item.data.title} 的学习记录。`}>
   <main class="content-page">
     <article class="learning-detail">
-      <div class="learning-detail-cover">
-        <img src={item.data.cover} alt={`${item.data.title} 封面`} />
+      <div class="learning-detail-media">
+        <a class="back-link" href="/learning/">返回学习内容</a>
+        <div class="learning-detail-cover">
+          <img src={item.data.cover} alt={`${item.data.title} 封面`} />
+        </div>
       </div>
 
       <div class="learning-detail-main">
-        <a class="back-link" href="/learning/">返回学习内容</a>
         <div class="learning-card-head">
           <small>{item.data.status}</small>
           <small>{item.data.depth}</small>
@@ -42,10 +44,14 @@ const { Content } = await render(item);
             <dt>记录时间</dt>
             <dd>{item.data.date}</dd>
           </div>
-          {item.data.source && (
+          {item.data.sourceHref && (
             <div>
-              <dt>来源</dt>
-              <dd>{item.data.source}</dd>
+              <dt>链接</dt>
+              <dd>
+                <a class="paper-link" href={item.data.sourceHref} target="_blank" rel="noreferrer">
+                  学习资料链接
+                </a>
+              </dd>
             </div>
           )}
         </dl>
