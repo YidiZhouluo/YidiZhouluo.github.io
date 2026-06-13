@@ -2,7 +2,7 @@
 title: "OpenCV计算机视觉开发实践：基于Python"
 type: "book"
 typeLabel: "书籍"
-author: "李大伟、李俊涛"
+author: "朱文伟、李建英"
 cover: "/images/learning/opencv-python-practice.jpg"
 status: "未学"
 depth: "泛读"

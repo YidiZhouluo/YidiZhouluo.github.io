@@ -29,7 +29,7 @@ const sections = [
 
           <div class="learning-grid">
             {items.map((item) => (
-              <a class="learning-card" href={`/learning/${item.slug}/`}>
+              <a class={`learning-card learning-card-${item.data.type}`} href={`/learning/${item.slug}/`}>
                 <div class="learning-cover">
                   <img src={item.data.cover} alt={`${item.data.title} 封面`} />
                 </div>

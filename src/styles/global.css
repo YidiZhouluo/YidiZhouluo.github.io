@@ -971,6 +971,10 @@ li {
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
+.learning-card-video {
+  grid-template-rows: auto minmax(210px, 1fr);
+}
+
 .learning-card:hover {
   border-color: #9fc7d1;
   transform: translateY(-2px);
@@ -988,6 +992,15 @@ li {
   height: 100%;
   object-fit: contain;
   padding: 10px;
+}
+
+.learning-card-video .learning-cover {
+  aspect-ratio: 16 / 9;
+}
+
+.learning-card-video .learning-cover img {
+  object-fit: cover;
+  padding: 0;
 }
 
 .learning-card-body {
@@ -1305,8 +1318,17 @@ li {
     max-width: none;
   }
 
+  .learning-card-video {
+    grid-template-columns: 230px minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
   .learning-cover {
     min-height: 100%;
+  }
+
+  .learning-card-video .learning-cover {
+    min-height: 0;
   }
 
 }
@@ -1338,6 +1360,10 @@ li {
   .learning-card {
     grid-template-columns: 1fr;
     grid-template-rows: 230px minmax(0, 1fr);
+  }
+
+  .learning-card-video {
+    grid-template-rows: auto minmax(0, 1fr);
   }
 
   .learning-detail {
