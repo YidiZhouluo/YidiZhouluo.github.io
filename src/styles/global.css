@@ -1021,14 +1021,18 @@ li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 20px;
+  height: 178px;
   padding: 18px;
+  overflow: hidden;
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
 .paper-note-main {
   display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr);
   gap: 10px;
   min-width: 0;
+  overflow: hidden;
 }
 
 .paper-note-head {
@@ -1058,13 +1062,30 @@ li {
 }
 
 .paper-note-card h3 {
+  display: -webkit-box;
+  overflow: hidden;
   font-size: 1.14rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.paper-note-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .note-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.note-tags span {
+  flex: 0 0 auto;
 }
 
 .paper-note-meta,
@@ -1076,7 +1097,9 @@ li {
 
 .paper-note-meta {
   align-self: start;
+  min-width: 0;
   padding-left: 18px;
+  overflow: hidden;
   border-left: 1px solid var(--line);
 }
 
@@ -1098,8 +1121,15 @@ li {
 .paper-note-detail-meta dd {
   min-width: 0;
   margin: 0;
-  overflow-wrap: anywhere;
+  overflow: hidden;
   color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paper-note-detail-meta dd {
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .knowledge-grid {
