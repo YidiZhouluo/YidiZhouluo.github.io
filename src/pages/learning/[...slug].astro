@@ -54,6 +54,16 @@ const { Content } = await render(item);
               </dd>
             </div>
           )}
+          {item.data.videoHref && (
+            <div>
+              <dt>视频链接</dt>
+              <dd>
+                <a class="paper-link" href={item.data.videoHref} target="_blank" rel="noreferrer">
+                  课程视频
+                </a>
+              </dd>
+            </div>
+          )}
         </dl>
 
         <div class="learning-tags">

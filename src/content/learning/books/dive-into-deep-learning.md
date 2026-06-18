@@ -5,7 +5,7 @@ typeLabel: "书籍"
 author: "Aston Zhang、Zachary C. Lipton、Mu Li、Alexander J. Smola"
 cover: "/images/learning/dl2.png"
 status: "完成"
-depth: "选择性精读"
+depth: "精读"
 date: "2026-06-11"
 tags: ["深度学习", "计算机视觉", "自然语言处理"]
 source: "Dive into Deep Learning"

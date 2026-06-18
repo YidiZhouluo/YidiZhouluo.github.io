@@ -3,7 +3,25 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const learningItems = await getCollection("learning");
-const sortedItems = [...learningItems].sort((a, b) => b.data.date.localeCompare(a.data.date));
+const preferredOrder = [
+  "books/machine-learning-watermelon-pumpkin",
+  "books/opencv-python-practice",
+  "books/deep-learning-from-scratch",
+  "books/dive-into-deep-learning",
+  "videos/d2l-v2",
+  "videos/pytorch-xiaotudui"
+];
+
+const getOrderIndex = (item) => {
+  const index = preferredOrder.indexOf(item.slug);
+  return index === -1 ? Number.POSITIVE_INFINITY : index;
+};
+
+const sortedItems = [...learningItems].sort((a, b) => {
+  const orderDiff = getOrderIndex(a) - getOrderIndex(b);
+  if (orderDiff !== 0) return orderDiff;
+  return b.data.date.localeCompare(a.data.date);
+});
 
 const sections = [
   { type: "book", title: "书籍" },

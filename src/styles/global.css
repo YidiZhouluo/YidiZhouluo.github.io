@@ -947,27 +947,270 @@ li {
   color: #1547a0;
 }
 
+.notes-hub {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.note-hub-card,
+.paper-note-card,
+.knowledge-card,
+.paper-note-detail {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.note-hub-card {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  min-height: 240px;
+  padding: 30px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.note-hub-card:hover,
+.paper-note-card:hover,
+.knowledge-card:hover {
+  border-color: #9fc7d1;
+  transform: translateY(-2px);
+}
+
+.note-hub-card small {
+  display: inline-flex;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.note-hub-card h2,
+.paper-note-card h3,
+.knowledge-card h3,
+.paper-note-detail h1 {
+  margin: 0;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  line-height: 1.35;
+}
+
+.note-hub-card h2 {
+  font-size: 1.45rem;
+}
+
+.note-hub-card p,
+.paper-note-card p,
+.knowledge-card p,
+.paper-note-detail-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.paper-note-list {
+  display: grid;
+  gap: 14px;
+}
+
+.paper-note-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 20px;
+  padding: 18px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.paper-note-main {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.paper-note-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.paper-note-head span,
+.note-tags span {
+  display: inline-flex;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.paper-note-head time {
+  color: var(--muted);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.9rem;
+}
+
+.paper-note-card h3 {
+  font-size: 1.14rem;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paper-note-meta,
+.paper-note-detail-meta {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.paper-note-meta {
+  align-self: start;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+
+.paper-note-meta div,
+.paper-note-detail-meta div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.paper-note-meta dt,
+.paper-note-detail-meta dt {
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.paper-note-meta dd,
+.paper-note-detail-meta dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.knowledge-card {
+  display: grid;
+  gap: 12px;
+  min-height: 190px;
+  padding: 18px;
+  box-shadow: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.knowledge-card-muted {
+  color: inherit;
+}
+
+.paper-note-detail {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+}
+
+.paper-note-detail-head {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.paper-note-detail h1 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.paper-note-detail-meta {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.paper-note-content h2 {
+  margin: 24px 0 10px;
+  font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
+  font-size: 1.28rem;
+}
+
+.paper-note-content p,
+.paper-note-content li {
+  color: var(--muted);
+}
+
+.learning-review a,
+.paper-note-content a {
+  color: #1d5fd0;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.learning-review a:hover,
+.paper-note-content a:hover {
+  color: #1547a0;
+}
+
 .learning-section {
   display: grid;
   gap: 18px;
 }
 
 .learning-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+  display: flex;
   gap: 18px;
   align-items: start;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 0 14px;
+  scroll-snap-type: x proximity;
+  scrollbar-color: #9fc7d1 #eef3f7;
+  scrollbar-width: thin;
+}
+
+.learning-grid::-webkit-scrollbar {
+  height: 10px;
+}
+
+.learning-grid::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: #eef3f7;
+}
+
+.learning-grid::-webkit-scrollbar-thumb {
+  border: 2px solid #eef3f7;
+  border-radius: 999px;
+  background: #9fc7d1;
 }
 
 .learning-card {
   display: grid;
-  grid-template-rows: 260px minmax(0, 1fr);
+  grid-template-rows: 220px minmax(0, 1fr);
+  flex: 0 0 340px;
+  height: 420px;
   min-width: 0;
-  max-width: 360px;
+  max-width: 340px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fbfcfe;
+  scroll-snap-align: start;
   transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
@@ -1004,8 +1247,10 @@ li {
 }
 
 .learning-card-body {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  min-height: 0;
   padding: 16px;
 }
 
@@ -1041,22 +1286,34 @@ li {
 }
 
 .learning-card h3 {
+  display: -webkit-box;
   margin: 0;
+  overflow: hidden;
   font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
   font-size: 1.12rem;
   line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .learning-card p {
+  display: -webkit-box;
   margin: 0;
+  overflow: hidden;
   color: var(--muted);
   font-size: 0.94rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .learning-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.learning-card .learning-tags {
+  margin-top: auto;
 }
 
 .learning-detail {
@@ -1303,7 +1560,22 @@ li {
     grid-template-columns: 1fr;
   }
 
-  .learning-grid,
+  .notes-hub,
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-note-card {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-note-meta {
+    padding-top: 14px;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
   .learning-detail {
     grid-template-columns: 1fr;
   }
@@ -1318,9 +1590,22 @@ li {
     max-width: none;
   }
 
+  .learning-grid .learning-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 210px minmax(0, 1fr);
+    flex-basis: 320px;
+    height: 410px;
+    max-width: 320px;
+  }
+
   .learning-card-video {
     grid-template-columns: 230px minmax(0, 1fr);
     grid-template-rows: auto;
+  }
+
+  .learning-grid .learning-card-video {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
   }
 
   .learning-cover {
@@ -1359,7 +1644,13 @@ li {
 
   .learning-card {
     grid-template-columns: 1fr;
-    grid-template-rows: 230px minmax(0, 1fr);
+    grid-template-rows: 210px minmax(0, 1fr);
+  }
+
+  .learning-grid .learning-card {
+    flex-basis: min(320px, 86vw);
+    height: 410px;
+    max-width: min(320px, 86vw);
   }
 
   .learning-card-video {
@@ -1368,6 +1659,16 @@ li {
 
   .learning-detail {
     padding: 18px;
+  }
+
+  .paper-note-detail {
+    padding: 18px;
+  }
+
+  .paper-note-meta div,
+  .paper-note-detail-meta div {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .learning-meta div {

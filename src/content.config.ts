@@ -13,7 +13,8 @@ const learning = defineCollection({
     date: z.string(),
     tags: z.array(z.string()).default([]),
     source: z.string().optional(),
-    sourceHref: z.string().url().optional()
+    sourceHref: z.string().url().optional(),
+    videoHref: z.string().url().optional()
   })
 });
 
@@ -25,7 +26,24 @@ const awards = defineCollection({
   })
 });
 
+const notes = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    category: z.enum(["paper-note"]),
+    authors: z.array(z.string()).default([]),
+    venue: z.string(),
+    date: z.string(),
+    status: z.string(),
+    tags: z.array(z.string()).default([]),
+    paperHref: z.string().url().optional(),
+    codeHref: z.string().url().optional(),
+    summary: z.string().optional()
+  })
+});
+
 export const collections = {
   learning,
-  awards
+  awards,
+  notes
 };

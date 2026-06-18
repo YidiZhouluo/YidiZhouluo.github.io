@@ -9,6 +9,7 @@ depth: "泛读"
 date: "2026-06-13"
 tags: ["深度学习", "PyTorch", "课程"]
 source: "动手学深度学习"
+videoHref: "https://www.bilibili.com/video/BV1if4y147hS"
 ---
 
 ## 简短评价

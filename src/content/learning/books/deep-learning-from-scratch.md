@@ -5,7 +5,7 @@ typeLabel: "书籍"
 author: "斋藤康毅"
 cover: "/images/learning/deep-learning-from-scratch.jpg"
 status: "完成"
-depth: "全文精读"
+depth: "精读"
 date: "2026-06-13"
 tags: ["深度学习", "Python", "计算机视觉"]
 source: "人民邮电出版社"
