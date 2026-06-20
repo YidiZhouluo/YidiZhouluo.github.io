@@ -37,82 +37,70 @@ summary: "系统综述 Mamba 与选择性状态空间模型在计算机视觉中
 
 ## 关键图表记录
 
-### 1. Mamba 与 SSM 基础结构
-
 ![Mamba 模块的架构图](/images/notes/papers/visual-mamba-survey-2024/fig-01-mamba-block-architecture.png)
 
-*图 1：Mamba 模块的架构图。该图用于理解 Mamba 如何在状态空间模型基础上引入选择机制，并通过硬件友好的实现方式提升长序列建模效率。*
+*图 1：Mamba 模块的架构图。*
 
 ![离散化 SSM 的架构图](/images/notes/papers/visual-mamba-survey-2024/fig-02-discretized-ssm-architecture.png)
 
-*图 2：离散化 SSM 的架构图。该图适合放在背景知识部分，用来辅助理解连续状态空间模型如何转化为可在深度网络中使用的离散序列建模模块。*
-
-### 2. 视觉 Mamba 的扫描机制
+*图 2：离散化 SSM 的架构图。*
 
 ![不同的扫描示意图 a](/images/notes/papers/visual-mamba-survey-2024/fig-03a-scan-patterns.png)
 
-*图 3(a)：不同扫描策略示意图。视觉 Mamba 需要将二维图像特征转换为可被序列模型处理的 token 序列，因此扫描方向会直接影响空间邻域关系的保留方式。*
+*图 3(a)：不同的扫描示意图。*
 
 ![不同的扫描示意图 b](/images/notes/papers/visual-mamba-survey-2024/fig-03b-scan-patterns.png)
 
-*图 3(b)：不同扫描策略示意图补充。该图可以和图 3(a) 一起用于比较单向、双向、交叉、多方向等扫描方式在二维视觉建模中的差异。*
+*图 3(b)：不同的扫描示意图。*
 
 ![视觉 Mamba 使用的扫描机制总结](/images/notes/papers/visual-mamba-survey-2024/table-01-visual-mamba-scan-mechanisms.png)
 
-*表 1：视觉 Mamba 使用的扫描机制总结。该表适合用于梳理不同 Visual Mamba 方法如何设计扫描路径，以及这些扫描设计分别服务于哪些视觉任务。*
-
-### 3. Visual Mamba 模块与混合架构
+*表 1：视觉 Mamba 使用的扫描机制总结。*
 
 ![ViM 与 VSS 模块的架构图](/images/notes/papers/visual-mamba-survey-2024/fig-04-vim-vss-blocks.png)
 
-*图 4：ViM 与 VSS 模块的架构图。ViM 和 VSS 是 Visual Mamba 方向中较有代表性的模块设计，可用于对比不同方法如何把 Mamba 引入视觉骨干网络。*
+*图 4：ViM 与 VSS 模块的架构图。*
 
 ![Mamba 与其它架构的结合总结](/images/notes/papers/visual-mamba-survey-2024/table-02-mamba-hybrid-architectures.png)
 
-*表 2：Mamba 与其它架构的结合总结。该表记录了 Mamba 与 CNN、Transformer、MLP 等架构结合的方式，有助于观察 Visual Mamba 并不是单一路线，而是逐渐形成了多种混合建模范式。*
-
-### 4. 通用视觉任务性能比较
+*表 2：Mamba 与其它架构的结合总结。*
 
 ![ImageNet-1K 数据集上的性能比较](/images/notes/papers/visual-mamba-survey-2024/table-03-imagenet-1k-comparison.png)
 
-*表 3：各模型架构代表方法在 ImageNet-1K 数据集上的性能比较。该表主要用于观察 Mamba、CNN、Transformer 等架构在图像分类任务中的性能与计算代价差异。*
+*表 3：各模型架构代表方法在 ImageNet-1K 数据集上的性能比较。*
 
 ![COCO 数据集上代表性方法性能比较](/images/notes/papers/visual-mamba-survey-2024/table-04-coco-representative-methods.png)
 
-*表 4：COCO 数据集上不同架构模型最先进代表性方法的性能比较。该表可用于分析 Visual Mamba 在目标检测、实例分割等 COCO 任务中的位置。*
+*表 4：COCO 数据集上不同架构模型最先进的代表性方法性能比较。*
 
 ![COCO 数据集上不同架构模型最先进性能比较补充](/images/notes/papers/visual-mamba-survey-2024/table-05-coco-sota-comparison-2.png)
 
-*表 5：COCO 数据集上不同架构模型最先进性能比较补充。该表与表 4 配合阅读，用于补充比较不同代表方法在 COCO 任务上的性能表现。*
+*表 5：COCO 数据集上不同架构模型最先进性能比较。*
 
 ![语义分割任务中不同模型的性能比较](/images/notes/papers/visual-mamba-survey-2024/table-06-semantic-segmentation-comparison.png)
 
-*表 6：语义分割任务中不同模型的性能比较。该表对后续关注医学图像分割较有参考价值，因为语义分割是 Visual Mamba 从通用视觉迁移到医学视觉的重要桥梁任务。*
-
-### 5. 代表性 Mamba 方法索引
+*表 6：语义分割任务中不同模型的性能比较。*
 
 ![代表性 Mamba 方法表 a](/images/notes/papers/visual-mamba-survey-2024/table-07a-representative-mamba-methods.png)
 
-*表 7(a)：代表性 Mamba 方法表。该表用于快速定位不同 Visual Mamba 方法的任务类型、核心设计和适用场景。*
+*表 7(a)：代表性 Mamba 方法表。*
 
 ![代表性 Mamba 方法表 b](/images/notes/papers/visual-mamba-survey-2024/table-07b-representative-mamba-methods.png)
 
-*表 7(b)：代表性 Mamba 方法表补充。该表与表 7(a) 共同构成 Visual Mamba 方法索引，适合后续筛选值得精读或复现的工作。*
-
-### 6. 医学视觉与遥感图像应用
+*表 7(b)：代表性 Mamba 方法表。*
 
 ![2D 医学图像分割中的代表性方法](/images/notes/papers/visual-mamba-survey-2024/fig-05-2d-medical-segmentation-methods.png)
 
-*图 5：2D 医学图像分割中的代表性方法。该图与个人研究方向关联较强，可用于后续整理 Visual Mamba 在医学图像分割中的网络设计路线。*
+*图 5：2D 医学图像分割中的代表性方法。*
 
 ![医学视觉 Mamba 的代表性方法 a](/images/notes/papers/visual-mamba-survey-2024/table-08a-medical-visual-mamba-methods.png)
 
-*表 8(a)：医学视觉 Mamba 的代表性方法。该表记录了 Visual Mamba 在医学分类、分割、检测等任务中的应用，是后续医学图像方向重点阅读的入口。*
+*表 8(a)：医学视觉 Mamba 的代表性方法。*
 
 ![医学视觉 Mamba 的代表性方法 b](/images/notes/papers/visual-mamba-survey-2024/table-08b-medical-visual-mamba-methods.png)
 
-*表 8(b)：医学视觉 Mamba 的代表性方法补充。该表与表 8(a) 配合，用于补充医学视觉场景下更多 Mamba 相关工作。*
+*表 8(b)：医学视觉 Mamba 的代表性方法。*
 
 ![Mamba 在遥感图像中的代表性方法](/images/notes/papers/visual-mamba-survey-2024/table-09-remote-sensing-mamba-methods.png)
 
-*表 9：Mamba 在遥感图像中的代表性方法。遥感图像同样具有大尺寸、长程依赖和复杂空间结构等特点，可作为理解 Mamba 处理高分辨率视觉任务的参考。*
+*表 9：Mamba 在遥感图像中的代表性方法。*
