@@ -8,7 +8,7 @@ status: "精读"
 tags: ["深度学习", "卷积神经网络", "生物医学图像分割"]
 paperHref: "https://arxiv.org/abs/1505.04597"
 codeHref: "https://github.com/LeeJunHyun/Image_Segmentation"
-summary: "提出了用于生物医学图像分割的U-Net，一种对称的U型编码器-解码器结构，通过跳跃连接。"
+summary: "提出了用于生物医学图像分割的U-Net，一种对称的U型编码器-解码器结构。"
 ---
 
 ## 阅读笔记
