@@ -1,4 +1,12 @@
-﻿export const awardItems = [
+export const awardItems = [
+  {
+    slug: "robot-ai-competition-provincial-second",
+    date: "2026-06",
+    dateLabel: "2026年6月",
+    type: "获奖",
+    title: "中国机器人及人工智能大赛省级二等奖",
+    evidenceImage: "/images/awards/robot-ai-competition-provincial-second.png"
+  },
   {
     slug: "zhengda-cup-provincial-third",
     date: "2026-06",
@@ -28,6 +36,4 @@
     evidenceImage: "/images/awards/computer-design-provincial-first.png"
   }
 ];
-
-
 
