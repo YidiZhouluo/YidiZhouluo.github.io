@@ -1,48 +1,22 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { knowledgeLinks } from "../../data/knowledgeLinks.js";
+const knowledgeBaseHref = "https://YidiZhouluo.github.io/YidiZhouluo-knowledge/";
 ---
 
-<BaseLayout title="知识库 | 周罗义迪个人网站" description="周罗义迪的外部知识库入口。">
-  <main class="content-page">
-    <section class="page-heading">
-      <p>个人笔记 / 知识库</p>
-      <h1>知识库</h1>
-      <span>这里保留外部平台入口，用于承载更系统的概念树、专题笔记和长期复习材料。</span>
-    </section>
-
-    <section class="info-section">
-      <div class="section-title-row">
-        <h2>知识库入口</h2>
-        <span>外部平台</span>
-      </div>
-
-      <div class="knowledge-grid">
-        {knowledgeLinks.map((item) => {
-          const content = (
-            <>
-              <div class="paper-note-head">
-                <span>{item.status}</span>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <div class="note-tags">
-                {item.tags.map((tag) => <span>{tag}</span>)}
-              </div>
-            </>
-          );
-
-          return item.href ? (
-            <a class="knowledge-card" href={item.href} target="_blank" rel="noreferrer">
-              {content}
-            </a>
-          ) : (
-            <article class="knowledge-card knowledge-card-muted">
-              {content}
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  </main>
-</BaseLayout>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content={`0; url=${knowledgeBaseHref}`} />
+    <title>正在前往知识库</title>
+    <script is:inline>
+      window.location.replace("https://YidiZhouluo.github.io/YidiZhouluo-knowledge/");
+    </script>
+  </head>
+  <body>
+    <p>
+      正在前往知识库：
+      <a href={knowledgeBaseHref}>YidiZhouluo-knowledge</a>
+    </p>
+  </body>
+</html>
