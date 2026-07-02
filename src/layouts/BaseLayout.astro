@@ -35,9 +35,27 @@ const {
           <a href="/learning/">学习内容</a>
           <a href="/contact/">联系方式</a>
         </nav>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深色模式">
-          <span data-theme-toggle-label>深色</span>
-        </button>
+        <div class="theme-menu" data-theme-menu>
+          <button
+            class="theme-menu-toggle"
+            type="button"
+            data-theme-menu-toggle
+            aria-label="主题设置"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true">⚙</span>
+          </button>
+          <div class="theme-menu-panel" data-theme-menu-panel hidden>
+            <button class="theme-option" type="button" data-theme-option="light">
+              <span aria-hidden="true">☀</span>
+              <span>白天</span>
+            </button>
+            <button class="theme-option" type="button" data-theme-option="dark">
+              <span aria-hidden="true">☾</span>
+              <span>夜晚</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -48,21 +66,52 @@ const {
     </footer>
 
     <script is:inline>
-      const themeToggle = document.querySelector("[data-theme-toggle]");
-      const themeToggleLabel = document.querySelector("[data-theme-toggle-label]");
+      const themeMenu = document.querySelector("[data-theme-menu]");
+      const themeMenuToggle = document.querySelector("[data-theme-menu-toggle]");
+      const themeMenuPanel = document.querySelector("[data-theme-menu-panel]");
+      const themeOptions = document.querySelectorAll("[data-theme-option]");
 
-      function syncThemeToggleLabel() {
-        const isDark = document.documentElement.dataset.theme === "dark";
-        if (themeToggleLabel) themeToggleLabel.textContent = isDark ? "浅色" : "深色";
-        if (themeToggle) themeToggle.setAttribute("aria-label", isDark ? "切换浅色模式" : "切换深色模式");
-      }
-
-      syncThemeToggleLabel();
-      themeToggle?.addEventListener("click", () => {
-        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      function setTheme(nextTheme) {
         document.documentElement.dataset.theme = nextTheme;
         localStorage.setItem("site-theme", nextTheme);
-        syncThemeToggleLabel();
+        syncThemeMenu();
+      }
+
+      function syncThemeMenu() {
+        const currentTheme = document.documentElement.dataset.theme;
+        themeOptions.forEach((option) => {
+          option.setAttribute("aria-pressed", String(option.dataset.themeOption === currentTheme));
+        });
+      }
+
+      function closeThemeMenu() {
+        if (!themeMenuPanel || !themeMenuToggle) return;
+        themeMenuPanel.hidden = true;
+        themeMenuToggle.setAttribute("aria-expanded", "false");
+      }
+
+      syncThemeMenu();
+
+      themeMenuToggle?.addEventListener("click", () => {
+        if (!themeMenuPanel || !themeMenuToggle) return;
+        const shouldOpen = themeMenuPanel.hidden;
+        themeMenuPanel.hidden = !shouldOpen;
+        themeMenuToggle.setAttribute("aria-expanded", String(shouldOpen));
+      });
+
+      themeOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          setTheme(option.dataset.themeOption);
+          closeThemeMenu();
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!themeMenu?.contains(event.target)) closeThemeMenu();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeThemeMenu();
       });
     </script>
   </body>

@@ -25,25 +25,25 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #101418;
-  --surface: #171c22;
-  --surface-soft: #1d242c;
-  --surface-raised: #202833;
-  --text: #edf3f7;
-  --muted: #a8b6c3;
-  --line: #303a45;
-  --line-strong: #46515e;
-  --accent: #8cc9dc;
-  --accent-soft: #18313a;
-  --gold: #e4bf78;
-  --gold-soft: #332815;
-  --index-blue: #b7c7f5;
-  --index-blue-soft: #222a42;
-  --link: #91c4ff;
-  --link-hover: #c7ddff;
-  --header-bg: rgba(16, 20, 24, 0.9);
+  --bg: #1c2026;
+  --surface: #252b33;
+  --surface-soft: #2d3540;
+  --surface-raised: #343d49;
+  --text: #f3f7fb;
+  --muted: #c1ccd7;
+  --line: #46515e;
+  --line-strong: #5b6876;
+  --accent: #91d2e4;
+  --accent-soft: #213c46;
+  --gold: #e8c27a;
+  --gold-soft: #3c301c;
+  --index-blue: #c3d0ff;
+  --index-blue-soft: #2b334f;
+  --link: #9ccbff;
+  --link-hover: #d2e5ff;
+  --header-bg: rgba(28, 32, 38, 0.92);
   --image-bg: #f8fafc;
-  --shadow: 0 18px 46px rgba(0, 0, 0, 0.36);
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
 }
 
 @font-face {
@@ -124,6 +124,7 @@ a {
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
+  min-width: 0;
 }
 
 .site-nav a {
@@ -139,26 +140,81 @@ a {
   color: var(--accent);
 }
 
-.theme-toggle {
+.theme-menu {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+.theme-menu-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 48px;
-  height: 32px;
-  padding: 0 12px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
   font-family: "TitleMixed", "STXinwei", "华文新魏", "Times New Roman", serif;
-  font-size: 0.86rem;
-  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
   box-shadow: 0 8px 20px rgba(23, 32, 51, 0.06);
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.theme-toggle:hover {
+.theme-menu-toggle:hover,
+.theme-menu-toggle[aria-expanded="true"] {
+  transform: translateY(-1px);
+  background: var(--accent-soft);
   border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-menu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 30;
+  display: grid;
+  gap: 6px;
+  min-width: 124px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.theme-menu-panel[hidden] {
+  display: none;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-family: "TitleMixed", "STXinwei", "鍗庢枃鏂伴瓘", "Times New Roman", serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.theme-option:hover,
+.theme-option[aria-pressed="true"] {
+  border-color: var(--line);
+  background: var(--accent-soft);
   color: var(--accent);
 }
 
@@ -1700,10 +1756,11 @@ li {
 
   .site-actions {
     align-items: flex-start;
-    flex-direction: column;
+    width: 100%;
   }
 
   .site-nav {
+    flex: 1 1 auto;
     justify-content: flex-start;
   }
 
