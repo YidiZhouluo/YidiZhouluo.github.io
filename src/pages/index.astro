@@ -151,7 +151,14 @@ const countdownEvents = [
   </main>
 
   <script>
-    const dayMs = 24 * 60 * 60 * 1000;
+    const secondMs = 1000;
+    const minuteMs = 60 * secondMs;
+    const hourMs = 60 * minuteMs;
+    const dayMs = 24 * hourMs;
+
+    function padTime(value) {
+      return String(value).padStart(2, "0");
+    }
 
     function updateCountdowns() {
       const now = new Date();
@@ -159,14 +166,24 @@ const countdownEvents = [
       document.querySelectorAll("[data-countdown-date]").forEach((card) => {
         const target = new Date(card.dataset.countdownDate);
         const output = card.querySelector("[data-countdown-days]");
-        const diffDays = Math.ceil((target.getTime() - now.getTime()) / dayMs);
+        const diffMs = target.getTime() - now.getTime();
 
         if (!output) return;
-        output.textContent = diffDays > 0 ? `还有 ${diffDays} 天` : "已到达";
+        if (diffMs <= 0) {
+          output.textContent = "已到达";
+          return;
+        }
+
+        const days = Math.floor(diffMs / dayMs);
+        const hours = Math.floor((diffMs % dayMs) / hourMs);
+        const minutes = Math.floor((diffMs % hourMs) / minuteMs);
+        const seconds = Math.floor((diffMs % minuteMs) / secondMs);
+
+        output.textContent = `还有 ${days} 天 ${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
       });
     }
 
     updateCountdowns();
-    window.setInterval(updateCountdowns, 60 * 60 * 1000);
+    window.setInterval(updateCountdowns, 1000);
   </script>
 </BaseLayout>

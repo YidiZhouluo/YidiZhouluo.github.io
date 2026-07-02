@@ -15,20 +15,30 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" href="/images/ico/web_ico.jpg" type="image/jpeg" />
+    <script is:inline>
+      const storedTheme = localStorage.getItem("site-theme");
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = storedTheme ?? preferredTheme;
+    </script>
     <title>{title}</title>
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="/">周罗义迪个人网站</a>
-      <nav class="site-nav" aria-label="主导航">
-        <a href="/">主页</a>
-        <a href="/introduction/">个人介绍</a>
-        <a href="/awards/">获奖情况</a>
-        <a href="/publications/">论文情况</a>
-        <a href="/notes/">个人笔记</a>
-        <a href="/learning/">学习内容</a>
-        <a href="/contact/">联系方式</a>
-      </nav>
+      <div class="site-actions">
+        <nav class="site-nav" aria-label="主导航">
+          <a href="/">主页</a>
+          <a href="/introduction/">个人介绍</a>
+          <a href="/awards/">获奖情况</a>
+          <a href="/publications/">论文情况</a>
+          <a href="/notes/">个人笔记</a>
+          <a href="/learning/">学习内容</a>
+          <a href="/contact/">联系方式</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深色模式">
+          <span data-theme-toggle-label>深色</span>
+        </button>
+      </div>
     </header>
 
     <slot />
@@ -36,5 +46,24 @@ const {
     <footer class="site-footer">
       <p>© 2026 YidiZhouluo. Personal academic archive in progress.</p>
     </footer>
+
+    <script is:inline>
+      const themeToggle = document.querySelector("[data-theme-toggle]");
+      const themeToggleLabel = document.querySelector("[data-theme-toggle-label]");
+
+      function syncThemeToggleLabel() {
+        const isDark = document.documentElement.dataset.theme === "dark";
+        if (themeToggleLabel) themeToggleLabel.textContent = isDark ? "浅色" : "深色";
+        if (themeToggle) themeToggle.setAttribute("aria-label", isDark ? "切换浅色模式" : "切换深色模式");
+      }
+
+      syncThemeToggleLabel();
+      themeToggle?.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("site-theme", nextTheme);
+        syncThemeToggleLabel();
+      });
+    </script>
   </body>
 </html>
